@@ -139,6 +139,22 @@ Matrix &Matrix::suma(const Matrix &b) const
     return *c;
 }
 
+Matrix &Matrix::operator +(const Matrix &b)
+{
+    Matrix *c = new Matrix(b.rows, b.cols);
+
+    for(int i = 0; i<c->rows; i++)
+    {
+        for(int j = 0; j<c->cols; j++)
+        {
+            c->m[i][j] = this->m[i][j] + b.m[i][j];
+        }
+    }
+
+    return *c;
+
+}
+
 void Matrix::resta(const Matrix &a, const Matrix &b)
 {
     this->cols = a.getCols();
@@ -172,6 +188,21 @@ Matrix &Matrix::resta(const Matrix &b) const
 
 }
 
+Matrix &Matrix::operator -(const Matrix &b)
+{
+    Matrix *c = new Matrix(b.rows, b.cols);
+
+    for(int i = 0; i<c->rows; i++)
+    {
+        for(int j = 0; j<c->cols; j++)
+        {
+            c->m[i][j] = this->m[i][j] - b.m[i][j];
+        }
+    }
+
+    return *c;
+}
+
 Matrix &Matrix::mult(const Matrix &a, const Matrix &b)
 {
 
@@ -185,6 +216,7 @@ Matrix &Matrix::mult(const Matrix &a, const Matrix &b)
     {
         for (int j = 0; j < c->cols; j++)
         {
+            c->m[i][j]=0;
             for (int k = 0; k < c->cols; k++)
             {
                 c->m[i][j] += a.m[i][k]*b.m[k][j];
@@ -196,6 +228,34 @@ Matrix &Matrix::mult(const Matrix &a, const Matrix &b)
 
         cout<<"No se puede multiplicar"<<endl;
     }
+    return *c;
+}
+
+Matrix &Matrix::operator *(const Matrix &b)
+{
+    Matrix *c = new Matrix(b.rows, this->cols);
+    if(b.rows == this->cols)
+    {
+
+
+    for (int i = 0; i < this->rows; i++)
+    {
+        for (int j = 0; j < this->cols; j++)
+        {
+            c->m[i][j]=0;
+            for (int k = 0; k < this->cols; k++)
+            {
+                c->m[i][j]=c->m[i][j] + (this->m[i][k]*b.m[k][j]);
+            }
+        }
+    }
+
+    }
+    else{
+
+        cout<<"No se puede multiplicar"<<endl;
+    }
+
     return *c;
 }
 
@@ -245,6 +305,19 @@ Matrix &Matrix::transpose() const
      return *c;
 }
 
+ostream& operator <<(ostream &o, const Matrix &a)
+{
+    o <<"Rows: "<<a.rows<<", Cols: "<<a.cols<<"\n";
+    for(int i = 0; i<a.rows; i++)
+    {
+        for(int j = 0; j<a.cols; j++)
+        {
+            o<<a.m[i][j]<<" ";
+        }
+        o<<"\n";
+    }
+    return o;
+}
 
 
 

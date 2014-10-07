@@ -10,7 +10,7 @@ int main()
 {
     Matrix a(M,N);
     Matrix b(M,N);
-    Matrix c;
+    Matrix c, d, e;
 
     a.setValue(0,0, 3);
     a.setValue(0,1, 3);
@@ -35,11 +35,21 @@ int main()
     a.showMatrix();
     b.showMatrix();
 
-   c = c.mult(a,b);
-   c.showMatrix();
+    c = a+b;
+    d = a-b;
+    e = a*b;
+ //c.showMatrix();
+ //d.showMatrix();
+
+
+    cout<<"Matriz C: Suma "<<"\n"<<c<<"\n";
+
+    cout<<"Matriz D: Resta"<<"\n"<<d<<"\n";
+
+    cout<<"Matriz E: Multiplicacion"<<"\n"<<e<<"\n";
+
 
     return 0;
 }
 
-http://git-scm.com/downloads
 

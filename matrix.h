@@ -34,11 +34,14 @@ public:
 
     void suma(const Matrix &a, const Matrix &b);
     Matrix &suma(const Matrix &b) const;
+    Matrix& operator +(const Matrix &b);
 
     void resta(const Matrix &a, const Matrix &b);
     Matrix &resta(const Matrix &b) const;
+    Matrix& operator -(const Matrix &b);
 
     Matrix &mult(const Matrix &a, const Matrix &b);
+    Matrix& operator *(const Matrix &b);
 
 
     void scalar(int scalar);
@@ -48,6 +51,10 @@ public:
     void transpose(const Matrix a);
     Matrix &transpose() const;
 
+
+
+
+    friend ostream& operator <<(ostream &o,const Matrix &a);
 };
 
 #endif // MATRIX_H
