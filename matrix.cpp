@@ -305,6 +305,53 @@ Matrix &Matrix::transpose() const
      return *c;
 }
 
+void Matrix::ingresarDatos(string filename)
+{
+    ifstream file;
+
+    file.open(filename.c_str());
+
+    if(file.is_open())
+    {
+        file>>this->rows;
+        file>>this->cols;
+        this->initMatrix();
+
+        for(int i = 0;i<this->rows;i++)
+         {
+            for(int j = 0;j<this->cols;j++)
+              {
+                file >> this->m[i][j];
+              }
+         }
+
+        file.close();
+    }
+}
+
+void Matrix::guardarDatos(string filename)
+{
+    ofstream file;
+
+    file.open(filename.c_str());
+
+    if(file.is_open())
+    {
+        file<<this->rows<<" "<<file<<this->cols<<endl;
+
+        for(int i = 0;i<this->rows;i++)
+         {
+            for(int j = 0;j<this->cols;j++)
+              {
+                file<<this->m[i][j]<<" ";
+              }
+            file<<endl;
+         }
+
+        file.close();
+    }
+}
+
 ostream& operator <<(ostream &o, const Matrix &a)
 {
     o <<"Rows: "<<a.rows<<", Cols: "<<a.cols<<"\n";

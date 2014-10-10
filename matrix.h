@@ -2,7 +2,7 @@
 #define MATRIX_H
 
 #include <iostream>
-
+#include <fstream>
 using namespace std;
 class Matrix
 {
@@ -51,7 +51,8 @@ public:
     void transpose(const Matrix a);
     Matrix &transpose() const;
 
-
+    void ingresarDatos( string filename);
+    void guardarDatos(string filename);
 
 
     friend ostream& operator <<(ostream &o,const Matrix &a);
